@@ -1,65 +1,69 @@
 # python-api-challenge
 Module 6
-This challenge has been split into two sub-challenges. The first 'WeatherPy' tasked me with obtaining the weather from the 'OpenWeatherMap API' for 500 cities across the world, with the data collected being output to a CSV file before being read into the second task 'VacationPy'. In the second task, using the data within the CSV, locate hotels using the 'Geoapify API' within certain Cities to plan my next vacation!
+Part 1: WeatherPy
+In this deliverable, you'll create a Python script to visualize the weather of over 500 cities of varying distances from the equator. You'll use the citipy Python libraryLinks to an external site., the OpenWeatherMap APILinks to an external site., and your problem-solving skills to create a representative model of weather across cities.
 
-WeatherPy :Obtaining the Data
-- Citipy libary code already provided to obtain a random selection of Longitude and Latitude values and the nearest City.
-- Using the 'OpenWeatherMap API' iterate through the cities identified by the Citipy:
-    - Through the JSON result for each city obtain:
-        - Latitude
-        - Longitude
-        - Max Temp
-        - Humidity
-        - Cloud cover
-        - Wind speed
-        - Country code
-        - Date
-    - Append the obtained data to the 'city_data' list
-- Create a dataframe from the 'city_data' list
-    - Save the dataframe to CSV ready for the 'VacationPy' task
-Generate Scatter plots
-- Using the data collected, generate scatter plots for:
-    - Latitude vs Temperature (c)
-    - Latitude vs. Humidity (%)
-    - Latitude vs. Cloudiness (%)
-    - Latitude vs. Wind Speed (m/s)
-- Note: To save time/repetitve coding, I created a function to generate the base scatter plots and then just added additional lines for the titles/labels
-Compute Linear Regression
-- Separate the Citie's from the previous dataframe into Northern and Southern Hemisphere dataframes
-- Create a function to compute the linear regression for the previously created plots, broken down into Northern and Southern Hemisphere dataframes
-- Create plots, linear regression and Line Equation for the following relationships:
-    - Northern Hemisphere: Temperature vs. Latitude
-    - Southern Hemisphere: Temperature vs. Latitude
-    - Northern Hemisphere: Humidity vs. Latitude
-    - Southern Hemisphere: Humidity vs. Latitude
-    - Northern Hemisphere: Cloudiness vs. Latitude
-    - Southern Hemisphere: Cloudiness vs. Latitude
-    - Northern Hemisphere: Wind Speed vs. Latitude
-    - Southern Hemisphere: Wind Speed vs. Latitude
+For this part, you'll use the WeatherPy.ipynb Jupyter notebook provided in the starter code ZIP file. The starter code will guide you through the process of using your Python coding skills to develop a solution to address the required functionalities.
 
-VacationPy: Plot the Cities on a World Map  
-Using the CSV from the previous 'city_data_df' plot each City on a hvplot world map
-- The size of the marker should be determined by the 'Humidity' value of each City
-- And each City point should be coloured differently
+To get started, the code required to generate random geographic coordinates and the nearest city to each latitude and longitude combination is provided.
 
-Add conditions to limit the number of Cities
-Added three conditions to reducde the number of cities down:
-    - Temperature should be <= 30
-    - Temperature should be >= 20
-    - Cloudiness should be == 0
-The reduced dataset is then renamed to 'hotel_df' consisting of the following columns:
-    - City
-    - Country
-    - Longitude
-    - Latitude
-    - Humidity
-    - Hotel Name - This was an empty column added to the dataframe ready for the next task
+Requirement 1: Create Plots to Showcase the Relationship Between Weather Variables and Latitude
+To fulfill the first requirement, you'll use the OpenWeatherMap API to retrieve weather data from the cities list generated in the starter code. Next, you'll create a series of scatter plots to showcase the following relationships:
 
-Locate nearest Hotel to each City in 'hotel_df'
-Using the 'Geoapify API' iterate through each City within the 'hotel_df' and find:
- - The nearest Hotel
- - Within 10km of the Latitude and Longitude of the city
- - Append the name of the hotel to the 'Hotel Name' column of the DataFrame
-- I added an additional step to filter out any Cities where a hotel was not found within the search area
-- Using the 'hotel_df' generate another world map to show each City which met the previous conditions set
- - Add the 'Hotel Name' and 'Country' to the hover message for each point
+Latitude vs. Temperature
+
+Latitude vs. Humidity
+
+Latitude vs. Cloudiness
+
+Latitude vs. Wind Speed
+
+Requirement 2: Compute Linear Regression for Each Relationship
+To fulfill the second requirement, compute the linear regression for each relationship. Separate the plots into Northern Hemisphere (greater than or equal to 0 degrees latitude) and Southern Hemisphere (less than 0 degrees latitude). You may find it helpful to define a function in order to create the linear regression plots.
+
+Next, create a series of scatter plots. Be sure to include the linear regression line, the model's formula, and the r values as you can see in the following image
+
+You should create the following plots:
+
+Northern Hemisphere: Temperature vs. Latitude
+
+Southern Hemisphere: Temperature vs. Latitude
+
+Northern Hemisphere: Humidity vs. Latitude
+
+Southern Hemisphere: Humidity vs. Latitude
+
+Northern Hemisphere: Cloudiness vs. Latitude
+
+Southern Hemisphere: Cloudiness vs. Latitude
+
+Northern Hemisphere: Wind Speed vs. Latitude
+
+Southern Hemisphere: Wind Speed vs. Latitude
+
+After each pair of plots, explain what the linear regression is modeling. Describe any relationships that you notice and any other findings you may uncover.
+
+Part 2: VacationPy
+In this deliverable, you'll use your weather data skills to plan future vacations. Also, you'll use Jupyter notebooks, the geoViews Python library, and the Geoapify API.
+
+The code needed to import the required libraries and load the CSV file with the weather and coordinates data for each city created in Part 1 is provided to help you get started.
+
+Your main tasks will be to use the Geoapify API and the geoViews Python library and employ your Python skills to create map visualizations.
+
+To succeed on this deliverable of the assignment, open the VacationPy.ipynb starter code and complete the following steps:
+Create a map that displays a point for every city in the city_data_df DataFrame as shown in the following image. The size of the point should be the humidity in each city.
+
+Narrow down the city_data_df DataFrame to find your ideal weather condition. For example:
+
+A max temperature lower than 27 degrees but higher than 21
+
+Wind speed less than 4.5 m/s
+
+Zero cloudiness
+
+Create a new DataFrame called hotel_df to store the city, country, coordinates, and humidity.
+
+For each city, use the Geoapify API to find the first hotel located within 10,000 meters of your coordinates.
+
+Add the hotel name and the country as additional information in the hover message for each city on the map as in the following image:
+
